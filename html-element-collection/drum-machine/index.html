@@ -34,5 +34,15 @@
   		<audio src="wav/ride.wav" />
   	</li>
   </ul>
+  <script>
+		let dramKitButton = document.getElementsByClassName('drum-kit__drum');
+		let dramKit = document.getElementsByTagName('audio');
+		let audioTmp = [];
+		for (let i = 0; i < dramKit.length; i++){
+			dramKitButton[i].onclick = ()=>{
+				dramKit[i].play();
+			}
+		}
+	</script>
 </body>
 </html>

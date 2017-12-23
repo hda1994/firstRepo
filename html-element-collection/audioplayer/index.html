@@ -38,5 +38,52 @@
   		</div>
   	</div>
   </div>
+  <script>
+		let play_pause = true;
+		let title = document.getElementsByClassName('title')[0];
+		title.title = 'Track name';
+		let music = ['mp3/LA Chill Tour.mp3','mp3/LA Fusion Jam.mp3','mp3/This is it band.mp3'];
+		let tmpLength = music.length;
+		console.log(music);
+		let tmp = 0;
+		let tmpAudio = document.getElementsByTagName('audio')[0];
+		tmpAudio.src = music[tmp];
+		let next = document.getElementsByClassName('next')[0];
+		let prev = document.getElementsByClassName('back')[0];
+		next.onclick = () => {
+			tmp = (++tmp > tmpLength-1)? tmp-tmpLength:tmp
+			tmpAudio.src = music[tmp];
+			title.title = music[tmp].slice(4,-4);
+			tmpAudio.play();
+			play_pause = false;
+		}
+		prev.onclick = () => {
+			tmp = (--tmp < 0)? tmp+tmpLength:tmp;
+			tmpAudio.src = music[tmp];
+			title.title = music[tmp].slice(4,-4);
+			tmpAudio.play();
+			play_pause = false;
+		}
+		
+		let play = document.getElementsByClassName('playstate')[0];
+		let stop = document.getElementsByClassName('stop')[0];
+		
+		play.onclick = ()=>{
+			if(play_pause){
+			tmpAudio.play();
+			title.title = music[tmp].slice(4,-4);
+			}
+			else{
+				tmpAudio.pause();
+			}
+			play_pause = !play_pause;
+		}
+
+		stop.onclick = ()=>{
+			tmpAudio.pause();
+			tmpAudio.currentTime = 0;
+			play_pause = true;
+		}
+	</script>
 </body>
 </html>
