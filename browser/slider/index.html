@@ -31,5 +31,18 @@
       </div>
     </div>
   </section>
+  <script>
+				let slide = document.getElementById('slider');
+				let imgsrc = ['i/airmax.png','i/airmax-jump.png','i/airmax-on-foot.png','i/airmax-playground.png','i/airmax-top-view.png'];
+				let i = 0;
+				let iLength = imgsrc.length;
+				slide.src = imgsrc[i++];
+				setInterval(()=>{
+					slide.src = imgsrc[i++];
+					if(i > iLength-1){
+						i -= iLength;
+					}
+				},5000)
+			</script>
 </body>
 </html>
