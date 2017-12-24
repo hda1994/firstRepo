@@ -25,5 +25,37 @@
       <audio src=""></audio>
     </li>
   </ul>
+  <script>
+		let audios = document.getElementsByTagName('audio');
+		let buttons = document.getElementsByTagName('li');
+		let sounds = ['first.mp3','second.mp3','third.mp3','fourth.mp3','fifth.mp3'];
+		let no = '/sounds/middle/';
+		let al = '/sounds/higher/';
+		let sh = '/sounds/lower/';
+		for(let i = 0; i < buttons.length; i++){
+			buttons[i].addEventListener('click',e=>{
+				if(e.shiftKey){
+					audios[i].src = sh + sounds[i];
+					audios[i].play();
+				}
+				else{
+					if(e.altKey){
+						audios[i].src = al + sounds[i];
+						audios[i].play();
+					}
+					else{
+						audios[i].src = no + sounds[i];
+						audios[i].play();
+					}
+				}
+			});
+		}
+//		function a(e){
+//			
+//			
+//		}
+		
+
+	</script>
 </body>
 </html>

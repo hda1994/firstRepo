@@ -45,5 +45,61 @@
       </svg>
     </div>
   </main>
+  
+  <script>
+		function ctrlAltT(event){
+			if(event.ctrlKey){
+				if(event.altKey){
+					if(event.code == 'KeyT'){
+						menu.classList.toggle('visible');
+					}
+				}
+			}
+		} 
+		let menu = document.getElementsByTagName('nav')[0];
+		document.addEventListener('keyup', ctrlAltT);
+		
+		let secret = document.getElementsByClassName('secret')[0];
+		let code = ['KeyY','KeyT','KeyN','KeyJ','KeyK','KeyJ','KeyU','KeyB','KeyZ'];
+		let tmpCodeLength = 0;
+		const keys = {
+			KeyY(){
+				tmpCodeLength = 1;
+			},
+			KeyT(){
+				tmpCodeLength = tmpCodeLength == 1? ++tmpCodeLength:0;
+			},
+			KeyN(){
+				tmpCodeLength = tmpCodeLength == 2? ++tmpCodeLength:0;
+			},
+			KeyJ(){
+				tmpCodeLength = (tmpCodeLength == 3 || tmpCodeLength == 5)? ++tmpCodeLength:0;
+			},
+			KeyK(){
+				tmpCodeLength = tmpCodeLength == 4? ++tmpCodeLength:0;
+			},
+			KeyU(){
+				tmpCodeLength = tmpCodeLength == 6? ++tmpCodeLength:0;
+			},
+			KeyB(){
+				tmpCodeLength = tmpCodeLength == 7? ++tmpCodeLength:0;
+			},
+			KeyZ(){
+				tmpCodeLength = tmpCodeLength == 8? ++tmpCodeLength:0;
+			}
+		}
+		function codeCheck(event){
+			if(event.code in keys){
+				keys[event.code]();
+			}
+			else{
+				tmpCodeLength = 0;
+			}
+			if(tmpCodeLength == 9){
+				secret.classList.add('visible');
+			}
+		}
+		document.addEventListener('keyup',codeCheck);
+	</script>
 </body>
 </html>

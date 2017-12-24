@@ -33,5 +33,16 @@
       <img src="images/thumb/07.jpg" title="EGGBEATER">
     </a>
   </nav>
+  <script>
+		function showImg(event){
+			event.preventDefault();
+			Array.from(imgs).forEach(img => img.classList.remove('gallery-current'));
+			view.src = this.href;
+			this.classList.add('gallery-current');
+		}
+		let view = document.getElementById('view');
+		let imgs = document.getElementsByTagName('a');
+		Array.from(imgs).forEach(img => img.addEventListener('click',showImg));	
+	</script>
 </body>
 </html>
