@@ -26,5 +26,39 @@
   </ul>
 
   <script src="js/built-in-ui.js"></script>
+  <script>
+		let xhr = new XMLHttpRequest();
+		xhr.addEventListener('load', onLoad);
+		xhr.open('GET', 'https://neto-api.herokuapp.com/book/')
+		xhr.send();
+		
+		function onLoad(){
+			let books = JSON.parse(xhr.responseText);
+			
+			let content = document.querySelector('#content');
+			let firstLi = content.querySelector('li');
+			let newListElem = document.createElement('li');
+			newListElem.innerHTML ='<img src="' + books[books.length - 1].cover.large +'">';
+			newListElem.dataset.author = books[books.length - 1].author.name;
+			newListElem.dataset.title = books[books.length - 1].title;
+			newListElem.dataset.info = books[books.length - 1].info;
+			newListElem.dataset.price = books[books.length - 1].price;
+			content.insertBefore(newListElem, firstLi);
+			content.removeChild(firstLi);
+			
+			for (let i = books.length - 2; i >= 0; i--){
+				let firstLi = content.querySelector('li');
+				let newListElem = document.createElement('li');
+				newListElem.innerHTML = '<img src="' + books[i].cover.large +'">';
+				newListElem.dataset.author = books[i].author.name;
+				newListElem.dataset.title = books[i].title;
+				newListElem.dataset.info = books[i].info;
+				newListElem.dataset.price = books[i].price;
+				content.insertBefore(newListElem, firstLi);
+			}
+			
+			
+		}
+	</script>
 </body>
 </html>
