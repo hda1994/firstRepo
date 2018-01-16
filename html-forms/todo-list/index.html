@@ -28,6 +28,38 @@
       </li>
     </ul>
     <h3>Выполнено задач: <output></output></h3>
+    <script>
+			function showText(){
+				if(tmp === all){
+					fieldset.classList.add('complete');
+				}
+				else{
+					fieldset.classList.remove('complete');
+				}
+				output.innerHTML = tmp + ' из ' + all;
+			}
+			let fieldset = document.querySelector('fieldset');
+			let output = document.querySelector('output');
+			let input = document.querySelectorAll('input');
+			let all = input.length;
+			let ready;
+			let tmp = 0;
+			for(let inp of input){
+				if(inp.checked){
+					tmp++;
+				}
+				inp.addEventListener('change', () =>{
+					if(inp.checked){
+						tmp++;
+					}
+					else{
+						tmp--;
+					}
+					showText();
+				});
+			}
+			document.addEventListener('DOMContentLoaded', showText);
+		</script>
   </fieldset>
 </body>
 </html>

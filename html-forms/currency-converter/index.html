@@ -17,5 +17,45 @@
   </main>
 
   <div id="loader" class="hidden">Загрузка...</div>
+  
+  
+  <script>
+		function show(){
+			result.innerHTML = Math.round(100 * input.value * from.value / to.value) / 100;
+		}
+		let input = document.querySelector('#source');	
+		let result = document.querySelector('#result');
+		let loader = document.querySelector('#loader');
+		loader.classList.remove('hidden');
+		let content = document.querySelector('#content');
+		let xhr = new XMLHttpRequest();
+		let curses;
+		let from = document.querySelector('#from');
+		let to = document.querySelector('#to');
+		to.addEventListener('input', show);
+		from.addEventListener('input', show);
+		input.addEventListener('input', show);
+		xhr.open('GET', 'https://neto-api.herokuapp.com/currency');
+		xhr.send();
+		xhr.addEventListener('load', () => {
+			loader.classList.add('hidden');
+			content.classList.remove('hidden');
+			curses = JSON.parse(xhr.responseText);
+			let flag = true;
+			for(let curse of curses){
+				if(flag){
+					from.innerHTML += '<option value="' + curse.value + '" selected>' + curse.code +  '</option>';
+					to.innerHTML += '<option value="' + curse.value + '" selected>' + curse.code +  '</option>';
+					flag = false;
+				}
+				else{
+					from.innerHTML += '<option value="' + curse.value + '">' + curse.code +  '</option>';
+					to.innerHTML += '<option value="' + curse.value + '">' + curse.code +  '</option>';
+				}
+			}
+			show();
+		});
+		
+	</script>
 </body>
 </html>

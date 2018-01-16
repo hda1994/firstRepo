@@ -80,7 +80,7 @@
         <textarea name="message" rows="14"></textarea>
   		</label>
   	</fieldset>
-    <button type="submit" class="button-contact" disabled>Отправить сообщение</button>
+    <button type="button" class="button-contact" disabled>Отправить сообщение</button>
   </form>
   <main class="hidden" id="output">
     <h2>Ваше сообщение</h2>
@@ -93,5 +93,46 @@
   </main>
 
   <script src="https://use.fontawesome.com/70378a66b8.js"></script>
+  <script>
+		function checkDisabled(){
+			for(let inp of input){
+				if(inp.value == ''){
+					return true;
+				}
+			}
+			if(textarea.value == ''){
+				return true;
+			}
+			return false;
+		}
+		let input = document.querySelectorAll('input');
+		let textarea = document.querySelector('textarea');
+		let form = document.querySelector('form');
+		let main = document.querySelector('main');
+		let buttons = document.querySelectorAll('.button-contact');
+		
+		buttons[0].addEventListener('click', () => {
+			main.classList.toggle('hidden');			
+			form.classList.toggle('hidden');
+		});
+		buttons[1].addEventListener('click', () => {
+			
+			main.classList.toggle('hidden');			
+			form.classList.toggle('hidden');
+		})
+		textarea.addEventListener('input', () =>{
+			document.querySelector('#' + textarea.name).innerHTML = textarea.value;
+			buttons[0].disabled = checkDisabled();
+		});
+		input[5].type = 'number';
+		for (let inp of input){
+			inp.addEventListener('input', () =>{
+				if(!(inp.name == 'email' || inp.name == 'phone')){
+					document.querySelector('#' + inp.name).innerHTML = inp.value;
+				}
+				buttons[0].disabled = checkDisabled();
+			});
+		}
+	</script>
 </body>
 </html>
