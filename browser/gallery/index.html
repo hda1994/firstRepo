@@ -44,12 +44,24 @@
 		tmpImg.src = imgs[i];
 		
 		function nextImg(){
-			i = (++i > iLength-1) ? i - iLength : i;
+			if(i > iLength - 2){
+				i = i - iLength + 1;
+			}
+			else{
+				i = i + 1;
+			}
+//			i = (++i > iLength-1) ? i - iLength : i;
 			tmpImg.src = imgs[i];
 		};
 
 		function prevImg(){
-			i = (--i < 0) ? i + iLength : i;
+			if(i < 1){
+				i = i + iLength - 1;
+			}
+			else{
+				i = i - 1;
+			}
+//			i = (--i < 0) ? i + iLength : i;
 			tmpImg.src = imgs[i];
 		};		
 		
