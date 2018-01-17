@@ -64,16 +64,18 @@
 			tmpAudio.play();
 			play_pause = false;
 		}
-		
+		let mediaplayer = document.querySelector('.mediaplayer');
 		let play = document.getElementsByClassName('playstate')[0];
 		let stop = document.getElementsByClassName('stop')[0];
 		
 		play.onclick = ()=>{
 			if(play_pause){
-			tmpAudio.play();
-			title.title = music[tmp].slice(4,-4);
+				mediaplayer.classList.add('play');
+				tmpAudio.play();
+				title.title = music[tmp].slice(4,-4);
 			}
 			else{
+				mediaplayer.classList.remove('play');
 				tmpAudio.pause();
 			}
 			play_pause = !play_pause;
