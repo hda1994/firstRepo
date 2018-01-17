@@ -1,16 +1,19 @@
 'use strict';
 
 function toggleMenu(event) {
-  if (this.classList.contains('show')) {
-    this.classList.remove('show');
-    this.classList.add('hide');
-  } else {
-    this.classList.add('show');
-    this.classList.remove('hide');
-  }
+	if(event.target.dataset.toggle == 'dropdown'){
+  	if (this.classList.contains('show')) {
+    	this.classList.remove('show');
+    	this.classList.add('hide');
+  	} else {
+    	this.classList.add('show');
+    	this.classList.remove('hide');
+  	}
+	}
 }
 
 function openLink(event) {
+	event.preventDefault();
   console.log(this.textContent);
 }
 
