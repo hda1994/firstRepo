@@ -21,56 +21,6 @@
     </div>
     <div id="preloader" class="hidden">Загрузка...</div>
   </div>
-  <script>
-		
-		let xhre = new XMLHttpRequest();
-		xhre.addEventListener('progress', onProgress);
-		xhre.addEventListener('load', onLoad);
-		xhre.addEventListener('loadend', onLoadEnd);
-		xhre.open('GET', 'components/email-tab.html');
-		xhre.send();
-		let xhrs = new XMLHttpRequest();		
-		xhrs.addEventListener('progress', onProgress);
-		xhrs.addEventListener('load', onLoad);
-		xhrs.addEventListener('loadend', onLoadEnd);
-		xhrs.open('GET', 'components/sms-tab.html');
-		xhrs.send();
-		
-		let preloader = document.querySelector('#preloader');
-		let content = document.querySelector('#content');
-		let tabs = document.querySelectorAll('.tabs a');
-		let email = tabs[0];
-		let sms = tabs[1];
-		email.addEventListener('click', onclickEmail);
-		sms.addEventListener('click', onclickSms);
-		
-		
-		function onLoad(event){
-			onclickEmail(event);
-		}
-		function onProgress(event){
-			let pr = Math.round(event.loaded / event.total * 100);
-			preloader.innerHTML = 'Загрузка... ' + pr + '%';
-			preloader.classList.remove('hidden');
-		}
-		function onLoadEnd(){
-			preloader.classList.add('hidden');
-		}
-		
-		function onclickEmail(event){
-			sms.classList.remove('active');
-			email.classList.add('active');
-			event.preventDefault();
-			content.innerHTML = xhre.responseText;
-			
-		}
-		function onclickSms(){
-			email.classList.remove('active');
-			sms.classList.add('active');
-			event.preventDefault();
-			content.innerHTML = xhrs.responseText;
-			
-		}
-	</script>
+  <script src="js/home.js"></script>
 </body>
 </html>
