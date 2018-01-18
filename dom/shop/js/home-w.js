@@ -3,18 +3,15 @@ let itemsTag = document.querySelector('#cart-count');
 let price = 0;
 let priceTag = document.querySelector('#cart-total-price');
 
-function f(){
+function f(event){
+	
 	items++;
-	let tmpPrice = parseInt(this.getAttribute('data-price'));
+	let tmpPrice = parseInt(event.target.getAttribute('data-price'));
 	price += tmpPrice;
 	itemsTag.innerHTML = items;
 	priceTag.innerHTML = price;
 }
 
-let buttons = document.querySelectorAll('.add.fa.fa-plus');
-
-for(let button of buttons){
-	button.addEventListener('click',f);
-}
-
+let container = document.querySelector('#container');
+container.addEventListener('click', f);
 
