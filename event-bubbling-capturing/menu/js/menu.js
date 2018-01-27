@@ -1,7 +1,7 @@
 'use strict';
 
 function toggleMenu(event) {
-	if(event.target.dataset.toggle == 'dropdown'){
+	if(event.target == this.querySelector('[data-toggle="dropdown"]') || event.target == this.querySelector('.icon-arrow')){
   	if (this.classList.contains('show')) {
     	this.classList.remove('show');
     	this.classList.add('hide');
@@ -25,7 +25,7 @@ function initLink(node) {
   if (node.dataset.toggle) {
     return;
   }
-  node.addEventListener('click', openLink);
+  node.addEventListener('click', openLink, true);
 }
 
 Array
@@ -35,3 +35,7 @@ Array
 Array
   .from(document.querySelectorAll('a'))
   .forEach(initLink);
+
+//Array
+//  .from(document.querySelectorAll('a i'))
+//  .forEach(initLink);

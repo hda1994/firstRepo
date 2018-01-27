@@ -1,16 +1,16 @@
 'use strict';
 
 function handleTableClick(event) {
- if(event.target.parentElement.parentElement == document.querySelector('thead')){
+ if(event.target.classList.contains('prop__name')){
 	 if(event.target.hasAttribute('data-dir')){
-		 event.target.dataset.dir = -1;
-		 sortTable(event.target.dataset.propName, -1);
+		 event.target.dataset.dir *= -1;
+		 sortTable(event.target.dataset.propName, event.target.dataset.dir);
 	 }
 	 else{
 		 document.querySelectorAll('th').forEach(elem => elem.removeAttribute('data-dir'));
 		 event.target.dataset.dir = 1;
 		 sortTable(event.target.dataset.propName, 1);
 	 }
-	 event.target.parentElement.parentElement.parentElement.dataset.sortBy = event.target.dataset.propName;
+	 document.querySelector('table').dataset.sortBy = event.target.dataset.propName;
  } 
 }
