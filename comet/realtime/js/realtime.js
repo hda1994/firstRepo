@@ -16,14 +16,16 @@ const ws = new WebSocket('wss://neto-api.herokuapp.com/realtime');
 ws.addEventListener('message', event => {
   if (isFirst) {
     event.data
-      .split('\n')
-      .map(line => line.split('|'))
-      .forEach(data => realtime.addData([Number(data[1])], data[0]));
-
+      .split('},')
+      .map(line => line.split(','))
+      .forEach(data => { 
+      realtime.addData([Number(data[1].replace('}]', '').slice(9))], data[0].replace('[', '').slice(9, 14));
+      });
     isFirst = false;
-  } else {
-    const [label, data] = event.data.split('|');
+  } 
+  else {
     realtime.removeData();
-    realtime.addData([Number(data)], label);
+    let e = event.data.split(',');
+    realtime.addData([Number(e[1].replace('}','').slice(9))], e[0].slice(9,14));
   }
 });
