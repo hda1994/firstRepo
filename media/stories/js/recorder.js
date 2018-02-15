@@ -1,5 +1,8 @@
 'use strict';
 
+const canvas = document.createElement('canvas');
+let ctx = canvas.getContext('2d');
+
 if (navigator.mediaDevices === undefined) {
   navigator.mediaDevices = {};
 }
@@ -47,11 +50,14 @@ function record(app) {
       recorder.addEventListener('dataavailable', e => chunks.push(e.data));
       recorder.addEventListener('stop', e => {
         const rec = new Blob(chunks, {'type': recorder.mimeTipe});
+        const rec1 = new Blob(chunks[0]);
         chunks = null;
         recorder = stream = null;
         tmp.video = rec;
+        tmp.frame = rec1;
       });
       recorder.start();
+      
 //      done(tmp);
       app.preview.srcObject = stream;
     }).catch(err => fail(err));
